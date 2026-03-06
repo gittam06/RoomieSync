@@ -23,7 +23,13 @@ const Register = () => {
       navigate('/login');
     } catch (err) {
       console.error(err);
-      setError('Registration failed. Try a different username.');
+      if (err.response?.data?.detail) {
+        setError(err.response.data.detail);
+      } else if (err.code === 'ERR_NETWORK') {
+        setError('Cannot connect to server. Please try again later.');
+      } else {
+        setError('Registration failed. Try a different username.');
+      }
     } finally {
       setLoading(false);
     }
@@ -31,7 +37,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-slate-950 relative overflow-hidden font-sans">
-      
+
       {/* Background Blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] animate-float pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600/20 rounded-full blur-[100px] animate-float pointer-events-none" style={{ animationDelay: '2s' }}></div>
@@ -45,7 +51,7 @@ const Register = () => {
 
         <div className="bg-slate-900/50 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-2xl animate-fade-up" style={{ animationDelay: '0.1s' }}>
           <form onSubmit={handleSubmit} className="space-y-5">
-            
+
             {/* Username */}
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Username</label>

@@ -12,18 +12,10 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Allow frontend origins (Vercel in production, localhost in dev)
-frontend_url = os.environ.get("FRONTEND_URL", "")
-origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
-if frontend_url:
-    origins.append(frontend_url)
-
+# CORS: Allow all origins so any frontend (Vercel, localhost, preview URLs) can connect
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
