@@ -1,2 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* --- THEME CONFIGURATION --- */
+@theme {
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-fade-up: fadeUp 0.4s ease-out forwards;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- ROOT VARIABLES (LIGHT MODE DEFAULT) --- */
+:root {
+  --bg-page: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-elevated: #f1f5f9;
+  --bg-input: #f1f5f9;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --border-primary: #e2e8f0;
+  
+  --accent-primary: #6366f1; 
+  --accent-primary-bg: rgba(99,102,241,0.08); 
+  
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* --- DARK MODE OVERRIDES --- */
+/* This works when <html class="dark"> exists */
+:root.dark {
+  --bg-page: #0b0f1a;
+  --bg-card: rgba(15, 23, 42, 0.8);
+  --bg-elevated: rgba(255,255,255,0.04);
+  --bg-input: rgba(255,255,255,0.04);
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.28);
+  
+  --border-primary: rgba(255,255,255,0.07);
+  
+  --accent-primary: #818cf8; 
+  --accent-primary-bg: rgba(129,140,248,0.1); 
+  
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+/* --- GLOBAL RESET --- */
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+#root { min-height: 100vh; width: 100%; }
+
+/* --- UTILITY CLASSES --- */
+.page-bg { background-color: var(--bg-page); min-height: 100vh; }
+.rs-card { background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: 16px; }
+
+/* Custom Animations */
+.anim-float { animation: var(--animate-float); }
+.anim-fade-up { animation: var(--animate-fade-up); }

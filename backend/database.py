@@ -1,27 +1,27 @@
 # backend/database.py
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# 1. Create the database URL (This will create a file named 'roomiesync.db')
-SQLALCHEMY_DATABASE_URL = "sqlite:///./roomiesync.db"
+# Use PostgreSQL in production (via DATABASE_URL env var), SQLite for local dev
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-# 2. Create the engine
-# connect_args is needed only for SQLite
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+if DATABASE_URL:
+    # Render provides DATABASE_URL starting with "postgres://" but SQLAlchemy needs "postgresql://"
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    engine = create_engine(DATABASE_URL)
+else:
+    # Local development fallback
+    engine = create_engine(
+        "sqlite:///./roomiesync.db",
+        connect_args={"check_same_thread": False}
+    )
 
-# 3. Create a SessionLocal class
-# Each instance of this class will be a database session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# 4. Create a Base class
-# All our database models (tables) will inherit from this
 Base = declarative_base()
 
-# 5. Dependency
-# This helper function ensures we open a DB session, do our work, and close it
 def get_db():
     db = SessionLocal()
     try:

@@ -1,99 +1,96 @@
-// frontend/src/components/ChoreWidget.jsx
-import { useState, useEffect } from 'react';
-import { CheckCircle, Circle } from 'lucide-react'; 
+import { CheckSquare, Plus, Calendar, Star, Check, Coffee, Sparkles } from 'lucide-react';
 import api from '../api';
+import { useState } from 'react';
 
-const ChoreWidget = ({ household }) => {
-  const [chores, setChores] = useState([]);
-  const [task, setTask] = useState('');
+const ChoreWidget = ({ chores, user, onAddClick, onRefresh }) => {
+  const [loadingId, setLoadingId] = useState(null);
 
-  const fetchChores = async () => {
+  const handleToggle = async (chore) => {
+    setLoadingId(chore.id);
     try {
-        const res = await api.get(`/chores/${household.id}`);
-        setChores(res.data);
-    } catch (err) {
-        console.error("Failed to load chores");
-    }
+      await api.put(`/chores/${chore.id}/toggle`, null, { params: { user_id: user.id } });
+      if (!chore.is_completed) {
+         await api.post('/activity/', {
+            household_id: chore.household_id,
+            user: user.username,
+            action: `completed chore: ${chore.title}`,
+            emoji: '✅',
+            time: 'Just now'
+         });
+      }
+      onRefresh();
+    } catch (err) { console.error(err); } 
+    finally { setLoadingId(null); }
   };
 
-  useEffect(() => {
-    if (household?.id) {
-        fetchChores();
-        const interval = setInterval(fetchChores, 2000);
-        return () => clearInterval(interval);
-    }
-  }, [household]);
-
-  const addChore = async (e) => {
-    e.preventDefault();
-    if (!task) return;
-
+  const handleDelete = async (id) => {
+    if (!window.confirm("Delete this chore?")) return;
     try {
-        const res = await api.post(`/chores/${household.id}`, {
-            title: task,
-            points: 10
-        });
-        setChores([...chores, res.data]); 
-        setTask('');
-    } catch (err) {
-        alert("Failed to add chore");
-    }
-  };
-
-  const toggleChore = async (choreId) => {
-    const updatedChores = chores.map(c => 
-        c.id === choreId ? { ...c, is_completed: !c.is_completed } : c
-    );
-    setChores(updatedChores);
-
-    try {
-        await api.put(`/chores/${choreId}/toggle`);
-    } catch (err) {
-        console.error("Failed to toggle chore");
-    }
+        await api.delete(`/chores/${id}`);
+        onRefresh();
+    } catch (e) { console.error(e); }
   };
 
   return (
-    <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl h-full flex flex-col min-h-[400px]">
-      <h3 className="text-xl font-bold mb-4 text-purple-400 flex items-center gap-2">
-        🧹 Chore Wars
-      </h3>
-      
-      {/* RESPONSIVE FORM */}
-      <form onSubmit={addChore} className="flex gap-2 mb-6">
-        <input 
-          type="text" placeholder="Task (e.g. Clean Kitchen)" 
-          value={task} onChange={(e) => setTask(e.target.value)}
-          className="bg-slate-900 border border-slate-600 rounded p-3 flex-grow text-white focus:border-purple-500 outline-none transition w-full"
-        />
-        <button type="submit" className="bg-purple-600 px-6 rounded font-bold hover:bg-purple-500 transition shadow-lg shadow-purple-600/20">+</button>
-      </form>
+    <div className="p-6 h-full flex flex-col">
+       <div className="flex justify-between items-center mb-6">
+          <h3 className="text-xl font-bold text-white flex items-center gap-2">
+             <CheckSquare className="text-purple-400" /> Chore Wars
+          </h3>
+          <button onClick={onAddClick} className="p-2 rounded-lg bg-purple-600 hover:bg-purple-500 text-white transition-colors shadow-lg shadow-purple-900/20">
+             <Plus size={18} />
+          </button>
+       </div>
 
-      <div className="space-y-3 overflow-y-auto flex-grow custom-scrollbar max-h-60 sm:max-h-80 pr-1">
-        {chores.length === 0 && <p className="text-slate-500 text-center py-4">No chores yet. Relax!</p>}
-        
-        {[...chores].reverse().map((chore) => (
-            <div 
-                key={chore.id} 
-                onClick={() => toggleChore(chore.id)}
-                className={`flex items-center gap-3 p-3 rounded cursor-pointer transition-all border border-transparent ${
-                    chore.is_completed ? 'bg-slate-800 opacity-50' : 'bg-slate-700/30 hover:bg-slate-700 hover:border-slate-600'
-                }`}
-            >
-                {chore.is_completed ? 
-                    <CheckCircle className="text-emerald-500 w-6 h-6 flex-shrink-0" /> : 
-                    <Circle className="text-slate-400 w-6 h-6 flex-shrink-0" />
-                }
-                
-                <div className="flex-grow min-w-0">
-                    <p className={`font-medium truncate ${chore.is_completed ? 'line-through text-slate-500' : 'text-white'}`}>
-                        {chore.title}
-                    </p>
-                    <p className="text-xs text-slate-400">10 XP</p>
+       <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-3 flex flex-col">
+          {chores.length === 0 ? (
+             // ✅ COOL EMPTY STATE
+             <div className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-white/5 rounded-2xl bg-white/5 p-8 text-center group">
+                <div className="w-20 h-20 bg-purple-500/10 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-500">
+                    <Coffee size={40} className="text-purple-400 opacity-50" />
                 </div>
-            </div>
-        ))}
-      </div>
+                <h4 className="text-lg font-bold text-white mb-1">All Caught Up!</h4>
+                <p className="text-sm text-slate-500 max-w-[200px] leading-relaxed">
+                   House is clean. Enjoy your free time or start a new mission.
+                </p>
+                <button 
+                   onClick={onAddClick}
+                   className="mt-6 text-xs font-bold bg-slate-800 hover:bg-purple-600 text-purple-400 hover:text-white px-4 py-2 rounded-lg transition-all border border-purple-500/20"
+                >
+                   Assign New Mission
+                </button>
+             </div>
+          ) : (
+             chores.map((chore) => (
+                <div key={chore.id} className={`p-3 rounded-xl border flex items-center justify-between transition-all ${chore.is_completed ? 'bg-slate-900/30 border-white/5 opacity-50' : 'bg-slate-800/40 border-white/10 hover:border-purple-500/30'}`}>
+                   <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => handleToggle(chore)}
+                        disabled={loadingId === chore.id}
+                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${chore.is_completed ? 'bg-purple-500 border-purple-500 text-white' : 'border-slate-500 hover:border-purple-400'}`}
+                      >
+                         {chore.is_completed && <Check size={14} />}
+                      </button>
+                      <div>
+                         <p className={`text-sm font-bold ${chore.is_completed ? 'text-slate-500 line-through' : 'text-white'}`}>{chore.title}</p>
+                         <div className="flex items-center gap-2 text-[10px] text-slate-400 mt-0.5">
+                            <span className="flex items-center gap-1 text-yellow-400 font-bold"><Star size={10} fill="currentColor"/> {chore.points}</span>
+                            {chore.assignee ? (
+                                <span className="bg-slate-700 px-1.5 py-0.5 rounded text-slate-300">For: {chore.assignee.username}</span>
+                            ) : <span>Anyone</span>}
+                         </div>
+                      </div>
+                   </div>
+                   {!chore.is_completed && (
+                     // Delete button (Only for active chores)
+                     <button onClick={() => handleDelete(chore.id)} className="text-slate-600 hover:text-red-400 p-2 transition-colors">
+                        {/* We use a subtle text/icon here if you prefer, or just the Trash icon */}
+                     </button>
+                   )}
+                </div>
+             ))
+          )}
+       </div>
     </div>
   );
 };

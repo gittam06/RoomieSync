@@ -1,53 +1,64 @@
-// frontend/src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Dashboard from './pages/Dashboard';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
+
+// --- LAYOUTS ---
+import AppLayout from './layouts/AppLayout';
+
+// --- PAGES ---
+import Landing from './pages/Landing';
+import Login from './components/Login'; // Ensure this path matches your folder structure
+import Register from './pages/Register';
+import Setup from './pages/Setup';
+
+// --- THE NEW APP PAGES ---
+import Home from './pages/Home';
+import Money from './pages/Money';
+import Tasks from './pages/Tasks';
+import Social from './pages/Social';
+import Settings from './pages/Settings';
+
+// --- AUTH GUARD ---
+const ProtectedRoute = () => {
+  const token = localStorage.getItem('token');
+  // If we have a token, render the child routes. If not, go to Landing.
+  return token ? <Outlet /> : <Navigate to="/" replace />;
+};
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Home Route: Shows Login/Signup options */}
-        <Route path="/" element={
-          <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center">
-             <div className="text-center mb-10">
-                <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-2">
-                  RoomieSync
-                </h1>
-                <p className="text-slate-400 text-lg">The Ultimate Bachelor Pad OS</p>
-              </div>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* 1. PUBLIC ROUTES (No Login Needed) */}
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* 2. PROTECTED ROUTES (Login Required) */}
+          <Route element={<ProtectedRoute />}>
+            
+            {/* Onboarding Page */}
+            <Route path="/setup" element={<Setup />} />
+
+            {/* THE MAIN APP (Uses the AppLayout Shell) */}
+            <Route element={<AppLayout />}>
+              {/* If they go to /dashboard (old link), send them to /home */}
+              <Route path="/dashboard" element={<Navigate to="/home" replace />} />
               
-              <div className="w-full max-w-md bg-slate-800 p-8 rounded-xl border border-slate-700">
-                <div className="flex justify-center gap-4 mb-6">
-                  {/* Tabs to toggle between Login and Signup */}
-                  <Link to="/login" className="text-blue-400 hover:underline">Login</Link>
-                  <span className="text-slate-500">|</span>
-                  <Link to="/signup" className="text-blue-400 hover:underline">Sign Up</Link>
-                </div>
-                
-                {/* Default to Login view if on home page */}
-                <Login />
-              </div>
-          </div>
-        } />
+              <Route path="/home" element={<Home />} />
+              <Route path="/money" element={<Money />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/social" element={<Social />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+          </Route>
 
-        <Route path="/signup" element={
-          <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-             <Signup />
-          </div>
-        } />
-
-        <Route path="/login" element={
-          <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-             <Login />
-          </div>
-        } />
-
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-  )
+          {/* 3. CATCH ALL (Prevents Blank Page on 404) */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
