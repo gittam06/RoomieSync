@@ -46,7 +46,7 @@
 
 \- \*\*Database:\*\* PostgreSQL (Production) / SQLite (Development)
 
-\- \*\*DevOps:\*\* Render (Backend), Vercel (Frontend)
+\- \*\*Deployment::\*\* Render (Backend), Vercel (Frontend)
 
 
 
