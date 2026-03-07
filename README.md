@@ -39,15 +39,23 @@
 
 
 
-\## 🛠️ Tech Stack
+\### 🛠️ Tech Stack
 
-\- \*\*Frontend:\*\* React (Vite), Tailwind CSS, Lucide Icons
+\### \*\*Application\*\*
 
-\- \*\*Backend:\*\* Python FastAPI, SQLAlchemy
+\- \*\*Frontend:** React (Vite), Tailwind CSS, Lucide Icons
 
-\- \*\*Database:\*\* PostgreSQL (Production) / SQLite (Development)
+\- \*\*Backend:** Python FastAPI, SQLAlchemy
 
-\- \*\*Deployment::\*\* Render (Backend), Vercel (Frontend)
+\- \*\*Database:** PostgreSQL (Production) / SQLite (Development)
+
+\### \*\*DevOps & Infrastructure\*\*
+
+\- \*\*Containerization:** Docker & Docker Compose 🐳
+
+\- \*\*CI/CD:** GitHub Actions (Automated Testing & Build) 🤖
+
+\- \*\*Deployment:\*\* Render (Backend), Vercel (Frontend)
 
 
 
