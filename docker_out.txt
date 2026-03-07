@@ -1,0 +1,186 @@
+﻿docker-compose : time="
+2026-03-07T21:40:41+05:
+30" level=warning msg="
+C:\\Users\\gitta\\OneDr
+ive\\Desktop\\PROJECT\\
+RoomieSync\\docker-comp
+ose.yml: the attribute 
+`version` is obsolete, 
+it will be ignored, 
+please remove it to 
+avoid potential 
+confusion"
+At line:1 char:1
++ docker-compose build 
+frontend --no-cache 
+2>&1 | Out-File 
+-FilePath do ...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (time="2026-03   
+ -0...tial confusio    
+n":String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+ Image 
+roomiesync-backend 
+Building 
+ Image 
+roomiesync-frontend 
+Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.13kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 487B 0.0s done
+#2 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 4)
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:18-alpine
+#3 DONE 1.2s
+
+#4 [internal] load metadata for docker.io/library/nginx:alpine
+#4 DONE 1.2s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 64B done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 DONE 0.0s
+
+#7 [stage-1 1/2] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+#7 resolve docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba 0.0s done
+#7 DONE 0.0s
+
+#8 [build 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#8 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#8 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
+#8 DONE 0.0s
+
+#7 [stage-1 1/2] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+#7 CACHED
+
+#9 [build 2/6] WORKDIR /app
+#9 CACHED
+
+#6 [internal] load build context
+#6 transferring context: 2.56kB done
+#6 DONE 0.0s
+
+#10 [build 3/6] COPY package.json package-lock.json ./
+#10 DONE 0.0s
+
+#11 [build 4/6] RUN npm install
+#11 1.330 npm warn EBADENGINE Unsupported engine {
+#11 1.330 npm warn EBADENGINE   package: '@tailwindcss/oxide@4.2.1',
+#11 1.330 npm warn EBADENGINE   required: { node: '>= 20' },
+#11 1.330 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#11 1.330 npm warn EBADENGINE }
+#11 1.330 npm warn EBADENGINE Unsupported engine {
+#11 1.330 npm warn EBADENGINE   package: '@vitejs/plugin-react@5.1.2',
+#11 1.330 npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+#11 1.330 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#11 1.330 npm warn EBADENGINE }
+#11 1.333 npm warn EBADENGINE Unsupported engine {
+#11 1.333 npm warn EBADENGINE   package: 'react-router@7.13.0',
+#11 1.333 npm warn EBADENGINE   required: { node: '>=20.0.0' },
+#11 1.333 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#11 1.333 npm warn EBADENGINE }
+#11 1.334 npm warn EBADENGINE Unsupported engine {
+#11 1.334 npm warn EBADENGINE   package: 'react-router-dom@7.13.0',
+#11 1.334 npm warn EBADENGINE   required: { node: '>=20.0.0' },
+#11 1.334 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#11 1.334 npm warn EBADENGINE }
+#11 1.334 npm warn EBADENGINE Unsupported engine {
+#11 1.334 npm warn EBADENGINE   package: 'vite@7.3.1',
+#11 1.334 npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+#11 1.334 npm warn EBADENGINE   current: { node: 'v18.20.8', npm: '10.8.2' }
+#11 1.334 npm warn EBADENGINE }
+#11 7.309 
+#11 7.309 added 200 packages, and audited 201 packages in 7s
+#11 7.309 
+#11 7.309 45 packages are looking for funding
+#11 7.309   run `npm fund` for details
+#11 7.318 
+#11 7.318 4 vulnerabilities (1 moderate, 3 high)
+#11 7.318 
+#11 7.318 To address all issues, run:
+#11 7.318   npm audit fix
+#11 7.318 
+#11 7.318 Run `npm audit` for details.
+#11 7.319 npm notice
+#11 7.319 npm notice New major version of npm available! 10.8.2 -> 11.11.0
+#11 7.319 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+#11 7.319 npm notice To update run: npm install -g npm@11.11.0
+#11 7.319 npm notice
+#11 DONE 7.5s
+
+#12 [build 5/6] COPY . .
+#12 DONE 0.1s
+
+#13 [build 6/6] RUN npm run build
+#13 0.366 
+#13 0.366 > frontend@0.0.0 build
+#13 0.366 > vite build
+#13 0.366 
+#13 0.425 You are using Node.js 18.20.8. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.
+#13 0.746 failed to load config from /app/vite.config.js
+#13 0.750 error during build:
+#13 0.750 Error: Cannot find native binding. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+#13 0.750     at Object.<anonymous> (/app/node_modules/@tailwindcss/oxide/index.js:559:11)
+#13 0.750     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+#13 0.750     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+#13 0.750     at Module.load (node:internal/modules/cjs/loader:1203:32)
+#13 0.750     at Module._load (node:internal/modules/cjs/loader:1019:12)
+#13 0.750     at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:203:29)
+#13 0.750     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+#13 0.750     at async ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+#13 0.750     at async loadConfigFromBundledFile (file:///app/node_modules/vite/dist/node/chunks/config.js:35909:12)
+#13 0.750     at async bundleAndLoadConfigFile (file:///app/node_modules/vite/dist/node/chunks/config.js:35797:17)
+#13 ERROR: process "/bin/sh -c npm run build" did not complete successfully: exit code: 1
+------
+ > [build 6/6] RUN npm run build:
+0.750     at Object.<anonymous> (/app/node_modules/@tailwindcss/oxide/index.js:559:11)
+0.750     at Module._compile (node:internal/modules/cjs/loader:1364:14)
+0.750     at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+0.750     at Module.load (node:internal/modules/cjs/loader:1203:32)
+0.750     at Module._load (node:internal/modules/cjs/loader:1019:12)
+0.750     at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:203:29)
+0.750     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+0.750     at async ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+0.750     at async loadConfigFromBundledFile (file:///app/node_modules/vite/dist/node/chunks/config.js:35909:12)
+0.750     at async bundleAndLoadConfigFile (file:///app/node_modules/vite/dist/node/chunks/config.js:35797:17)
+------
+Dockerfile:9
+
+--------------------
+
+   7 |     RUN npm 
+install
+
+   8 |     COPY . .
+
+   9 | >>> RUN npm run 
+build
+
+  10 |     
+
+  11 |     # --- Stage 
+2: Serve with Nginx ---
+
+--------------------
+
+failed to solve: 
+process "/bin/sh -c 
+npm run build" did not 
+complete successfully: 
+exit code: 1
+

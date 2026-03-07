@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. Database Service (PostgreSQL)
+  db:
+    image: postgres:15
+    container_name: roomiesync-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: roomiesync
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # 2. Backend Service
+  backend:
+    build: ./backend
+    container_name: roomiesync-backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/roomiesync
+    depends_on:
+      - db
+
+  # 3. Frontend Service
+  frontend:
+    build: ./frontend
+    container_name: roomiesync-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

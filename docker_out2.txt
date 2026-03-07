@@ -1,0 +1,126 @@
+﻿#1 [internal] load local bake definitions
+#1 reading from stdin 1.13kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 487B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-alpine
+#3 ...
+
+#4 [internal] load metadata for docker.io/library/nginx:alpine
+#4 DONE 1.2s
+
+#3 [internal] load metadata for docker.io/library/node:22-alpine
+#3 DONE 2.6s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 64B done
+#5 DONE 0.0s
+
+#6 [stage-1 1/2] FROM docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+#6 resolve docker.io/library/nginx:alpine@sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba 0.0s done
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 3.02kB 0.0s done
+#7 DONE 0.1s
+
+#8 [build 1/6] FROM docker.io/library/node:22-alpine@sha256:8094c002d08262dba12645a3b4a15cd6cd627d30bc782f53229a2ec13ee22a00
+#8 resolve docker.io/library/node:22-alpine@sha256:8094c002d08262dba12645a3b4a15cd6cd627d30bc782f53229a2ec13ee22a00 0.0s done
+#8 ...
+
+#9 [auth] library/node:pull token for registry-1.docker.io
+#9 DONE 0.0s
+
+#8 [build 1/6] FROM docker.io/library/node:22-alpine@sha256:8094c002d08262dba12645a3b4a15cd6cd627d30bc782f53229a2ec13ee22a00
+#8 sha256:7c9e1e1c637a965a5768a81fd902f4df05debe64963fcf7c7ed4c5401cc6bcd3 0B / 447B 0.2s
+#8 sha256:c699e235cde407e9ab634f43f63d20708c76c61d2817bd98708fc1aa50c09397 0B / 1.26MB 0.2s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 0B / 52.07MB 0.2s
+#8 sha256:7c9e1e1c637a965a5768a81fd902f4df05debe64963fcf7c7ed4c5401cc6bcd3 447B / 447B 1.2s done
+#8 sha256:c699e235cde407e9ab634f43f63d20708c76c61d2817bd98708fc1aa50c09397 1.26MB / 1.26MB 1.6s done
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 3.15MB / 52.07MB 2.1s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 6.29MB / 52.07MB 2.4s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 10.49MB / 52.07MB 2.7s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 13.63MB / 52.07MB 3.0s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 16.78MB / 52.07MB 3.3s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 20.97MB / 52.07MB 3.6s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 24.12MB / 52.07MB 3.9s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 27.26MB / 52.07MB 4.2s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 30.41MB / 52.07MB 4.5s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 34.60MB / 52.07MB 4.8s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 37.75MB / 52.07MB 5.1s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 40.89MB / 52.07MB 5.4s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 45.09MB / 52.07MB 5.7s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 48.23MB / 52.07MB 6.0s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 52.07MB / 52.07MB 6.3s
+#8 sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 52.07MB / 52.07MB 6.3s done
+#8 extracting sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c
+#8 extracting sha256:ed87be4595e508c0f2a1ff7a1810938267171d1018a91c41b6dc191f15ca818c 1.5s done
+#8 extracting sha256:c699e235cde407e9ab634f43f63d20708c76c61d2817bd98708fc1aa50c09397
+#8 extracting sha256:c699e235cde407e9ab634f43f63d20708c76c61d2817bd98708fc1aa50c09397 0.1s done
+#8 extracting sha256:7c9e1e1c637a965a5768a81fd902f4df05debe64963fcf7c7ed4c5401cc6bcd3 0.0s done
+#8 DONE 8.0s
+
+#10 [build 2/6] WORKDIR /app
+#10 DONE 0.2s
+
+#11 [build 3/6] COPY package.json package-lock.json ./
+#11 DONE 0.0s
+
+#12 [build 4/6] RUN npm install
+#12 7.220 
+#12 7.220 added 201 packages, and audited 202 packages in 7s
+#12 7.220 
+#12 7.220 45 packages are looking for funding
+#12 7.220   run `npm fund` for details
+#12 7.232 
+#12 7.232 4 vulnerabilities (1 moderate, 3 high)
+#12 7.232 
+#12 7.232 To address all issues, run:
+#12 7.232   npm audit fix
+#12 7.232 
+#12 7.232 Run `npm audit` for details.
+#12 7.235 npm notice
+#12 7.235 npm notice New major version of npm available! 10.9.4 -> 11.11.0
+#12 7.235 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+#12 7.235 npm notice To update run: npm install -g npm@11.11.0
+#12 7.235 npm notice
+#12 DONE 7.5s
+
+#13 [build 5/6] COPY . .
+#13 DONE 0.1s
+
+#14 [build 6/6] RUN npm run build
+#14 0.445 
+#14 0.445 > frontend@0.0.0 build
+#14 0.445 > vite build
+#14 0.445 
+#14 0.940 vite v7.3.1 building client environment for production...
+#14 1.031 transforming...
+#14 4.819 Ô£ô 1803 modules transformed.
+#14 5.120 rendering chunks...
+#14 5.133 computing gzip size...
+#14 5.149 dist/index.html                   0.40 kB Ôöé gzip:   0.27 kB
+#14 5.149 dist/assets/index-BxrcMcja.css   81.13 kB Ôöé gzip:  11.99 kB
+#14 5.149 dist/assets/index-Cv0E9QuB.js   385.75 kB Ôöé gzip: 112.51 kB
+#14 5.150 Ô£ô built in 4.17s
+#14 DONE 5.3s
+
+#15 [stage-1 2/2] COPY --from=build /app/dist /usr/share/nginx/html
+#15 DONE 0.0s
+
+#16 exporting to image
+#16 exporting layers 0.1s done
+#16 exporting manifest sha256:8908c27084e3a5ea1d17a5371f34484b2f3edd452b551c931f685db5178d5162 0.0s done
+#16 exporting config sha256:9d3ce22d78b102098ee027faccc73908df3e09a3282e73c87de012bbc5bf9939 0.0s done
+#16 exporting attestation manifest sha256:46164c38d1a29a1726b7c7c60d839eac5f6dbbecc1169fccfb67cac081862cdb 0.0s done
+#16 exporting manifest list sha256:38a55f8a0e294b167b6f7167272414394959dd184e81d7b86ca20099f4786b5f 0.0s done
+#16 naming to docker.io/library/roomiesync-frontend:latest
+#16 naming to docker.io/library/roomiesync-frontend:latest done
+#16 unpacking to docker.io/library/roomiesync-frontend:latest 0.0s done
+#16 DONE 0.3s
+
+#17 resolving provenance for metadata file
+#17 DONE 0.0s
