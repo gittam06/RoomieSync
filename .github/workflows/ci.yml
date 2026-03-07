@@ -1,6 +1,5 @@
 name: CI Pipeline
 
-# Trigger the robot whenever you push to main
 on:
   push:
     branches: [ "main" ]
@@ -8,13 +7,12 @@ on:
     branches: [ "main" ]
 
 jobs:
-  # The "Build Test" Job
   docker-check:
-    runs-on: ubuntu-latest  # Use a fresh Linux server
+    runs-on: ubuntu-latest
     steps:
       - name: 📥 Checkout Code
         uses: actions/checkout@v3
 
       - name: 🐳 Test Docker Build
-        # This tries to build your containers. If this fails, the robot screams.
-        run: docker-compose build
+        # Fixed: Removed the hyphen (-) to use the modern command
+        run: docker compose build
