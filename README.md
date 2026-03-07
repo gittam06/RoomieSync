@@ -1,5 +1,6 @@
 \# 🏠 RoomieSync
 
+![CI Pipeline](https://github.com/gittam06/RoomieSync/actions/workflows/ci.yml/badge.svg)
 
 
 \*\*RoomieSync\*\* is a full-stack household management application designed to bring peace to shared living spaces. It helps roommates manage finances, chores, and communication in one unified dashboard.
