@@ -63,11 +63,14 @@ const Register = () => {
                   type="text"
                   name="username"
                   required
+                  pattern="[A-Za-z]+"
+                  title="Letters only. No spaces, numbers, or special characters."
                   className="w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder:text-slate-600"
                   placeholder="e.g. Gittam"
                   onChange={handleChange}
                 />
               </div>
+              <p className="text-[10px] text-slate-500 mt-1 ml-1 bg-slate-900/50 p-1 rounded">Letters only. No spaces, numbers, or special characters.</p>
             </div>
 
             {/* Email */}

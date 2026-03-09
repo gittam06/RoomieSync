@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import api from '../api';
 import { User, Lock, ArrowRight, Eye, EyeOff, ArrowLeft, Mail, KeyRound, CheckCircle } from 'lucide-react';
 
@@ -9,6 +10,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   // Forgot Password State
   const [forgotMode, setForgotMode] = useState(false);
@@ -36,8 +38,7 @@ const Login = () => {
       const user = usersRes.data.find(u => u.username === formData.username);
 
       if (user) {
-        localStorage.setItem('token', user.username);
-        localStorage.setItem('user_id', user.id);
+        login(user.username, user.id);
 
         if (user.household_id) {
           navigate('/home');

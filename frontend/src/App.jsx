@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
+import { useAuth } from './context/AuthContext';
 
 // --- LAYOUTS ---
 import AppLayout from './layouts/AppLayout';
@@ -19,9 +20,12 @@ import Settings from './pages/Settings';
 
 // --- AUTH GUARD ---
 const ProtectedRoute = () => {
-  const token = localStorage.getItem('token');
-  // If we have a token, render the child routes. If not, go to Landing.
-  return token ? <Outlet /> : <Navigate to="/" replace />;
+  const { isAuthenticated, loading } = useAuth();
+
+  if (loading) return null; // Avoid redirecting while checking auth status
+
+  // If we are authenticated, render the child routes. If not, go to Landing.
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 function App() {
@@ -36,7 +40,7 @@ function App() {
 
           {/* 2. PROTECTED ROUTES (Login Required) */}
           <Route element={<ProtectedRoute />}>
-            
+
             {/* Onboarding Page */}
             <Route path="/setup" element={<Setup />} />
 
@@ -44,7 +48,7 @@ function App() {
             <Route element={<AppLayout />}>
               {/* If they go to /dashboard (old link), send them to /home */}
               <Route path="/dashboard" element={<Navigate to="/home" replace />} />
-              
+
               <Route path="/home" element={<Home />} />
               <Route path="/money" element={<Money />} />
               <Route path="/tasks" element={<Tasks />} />
